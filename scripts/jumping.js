@@ -5,7 +5,7 @@
 export const Diagnostics = require('Diagnostics');
 const Scene = require('Scene');
 const Animation = require('Animation');
-const pokemonList = ['Pikachu3d', 'Charmander3d', 'Bulbasaur3d'];
+const pokemonList = ['Pikachu3d', 'Charmander3d', 'Bulbasaur3d', 'Spheal3d', 'Whimsicott3d'];
 
 for (var pokemon of pokemonList) {
 	Scene.root.findFirst(pokemon).then(jump);
