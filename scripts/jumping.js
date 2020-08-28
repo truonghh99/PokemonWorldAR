@@ -19,6 +19,6 @@ function jump(object) {
 	};
 	var driver = Animation.timeDriver(baseDriverParameters);
 	var sampler = Animation.samplers.linear(0, 0.05);
-	object.transform.y = Animation.animate(driver, sampler);
+	//object.transform.y = Animation.animate(driver, sampler);
 	driver.start();
 }
