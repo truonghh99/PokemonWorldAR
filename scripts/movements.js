@@ -3,29 +3,15 @@
  */
 
 export const Diagnostics = require('Diagnostics');
-
-const FAR_LEFT_X = -0.5;
-const FAR_RIGHT_X = 0.5; 
-
-const TOP_Y = 1.5;
-const BOTTOM_Y = 0;
-
-const TOP_PARACHUTE_Y = 1.9;
-const BOTTOM_PARACHUTE_Y = 0.4;
-
 const Scene = require('Scene');
 const Animation = require('Animation');
-const pokemonList = ['Bulbasaur3d', 'Spheal3d', 'Torchic3d', 'Fennec3d'];
 
-Scene.root.findFirst('Pikachu3d').then(parachute);
-
-Scene.root.findFirst('Charmander3d').then((result) => moveHorizontally(result, FAR_LEFT_X, FAR_RIGHT_X));
-
-Scene.root.findFirst('Whimsicott3d').then((result) => moveHorizontally(result, FAR_RIGHT_X, FAR_LEFT_X));
-
-for (var pokemon of pokemonList) {
-	Scene.root.findFirst(pokemon).then(bounce);
-}
+export const FAR_LEFT_X = -0.5;
+export const FAR_RIGHT_X = 0.5; 
+export const TOP_Y = 1.5;
+export const BOTTOM_Y = 0;
+export const TOP_PARACHUTE_Y = 1.8;
+export const BOTTOM_PARACHUTE_Y = 0.4;
 
 export function moveHorizontally(object, begin, end) {
 	var baseDriverParameters = {
