@@ -39,6 +39,8 @@ export function moveVertically(object, begin, end) {
     	bounce(object);
 	});
 
+	//object.hidden = false;
+
 	driver.start();
 }
 
