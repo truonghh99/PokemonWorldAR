@@ -7,7 +7,9 @@ const Scene = require('Scene');
 const Animation = require('Animation');
 const Movements = require("./movements.js");
 const TouchGestures = require('TouchGestures');
-const Instruction = require('Instruction'); 
+const Instruction = require('Instruction');
+
+export var effectState = 0;
 
 export const FAR_LEFT_X = -0.5;
 export const FAR_RIGHT_X = 0.5; 
@@ -16,9 +18,9 @@ export const BOTTOM_Y = 0;
 export const TOP_PARACHUTE_Y = 1.4;
 export const BOTTOM_PARACHUTE_Y = 0.4;
 
-Scene.root.findFirst('pikachu').then(parachute);
-TouchGestures.onTap().subscribe(resetAllAnimation);
+TouchGestures.onTap().subscribe(moveToNextState);
 TouchGestures.onPan().subscribe(retrackPlane);
+Instruction.bind(true, 'tap_to_start'); 
 
 export function moveVertically(object, begin, end) {
 	var baseDriverParameters = {
@@ -62,7 +64,23 @@ export function retrackPlane(gesture) {
 	});
 }
 
-export function resetAllAnimation() {
-	Diagnostics.log("Reset");
-	Scene.root.findFirst('pikachu').then(Movements.parachute);
+export function moveToNextState() {
+	switch (effectState) {
+		case 0:
+			showPikachuBack();
+			break;
+		case 1:
+			showPikachuFront();
+			break;
+		case 2:
+			switchCamera();
+			break;
+		default:
+			break;
+	}
+	++effectState;
+}
+
+function showPikachuBack() {
+	Scene.root.findFirst('pikachu').then(parachute);
 }
