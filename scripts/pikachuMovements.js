@@ -8,6 +8,7 @@ const Animation = require('Animation');
 const Movements = require("./movements.js");
 const TouchGestures = require('TouchGestures');
 const Instruction = require('Instruction');
+const CameraInfo = require('CameraInfo');
 
 export var effectState = 0;
 
@@ -20,6 +21,8 @@ export const BOTTOM_PARACHUTE_Y = 0.4;
 
 TouchGestures.onTap().subscribe(moveToNextState);
 TouchGestures.onPan().subscribe(retrackPlane);
+Scene.root.findFirst('sittingPikachu').then(hide);
+Scene.root.findFirst('planeTracker').then(hide);
 Instruction.bind(true, 'tap_to_start'); 
 
 export function moveVertically(object, begin, end) {
@@ -35,9 +38,6 @@ export function moveVertically(object, begin, end) {
 	driver.onCompleted().subscribe(function () {
     	bounce(object);
 	});
-
-	//object.hidden = false;
-
 	driver.start();
 }
 
@@ -72,9 +72,6 @@ export function moveToNextState() {
 		case 1:
 			showPikachuFront();
 			break;
-		case 2:
-			switchCamera();
-			break;
 		default:
 			break;
 	}
@@ -82,5 +79,21 @@ export function moveToNextState() {
 }
 
 function showPikachuBack() {
+	Scene.root.findFirst('planeTracker').then(show);
 	Scene.root.findFirst('pikachu').then(parachute);
+	Instruction.bind(true, 'tap_to_advance'); 
+}
+
+function showPikachuFront() {
+	Scene.root.findFirst('planeTracker').then(hide);
+	Scene.root.findFirst('sittingPikachu').then(show);
+	Instruction.bind(true, 'flip_camera');
+}
+
+function hide(object) {
+	object.hidden = true;
+}
+
+function show(object) {
+	object.hidden = false;
 }
