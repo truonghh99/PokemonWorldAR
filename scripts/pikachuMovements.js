@@ -68,9 +68,14 @@ export function moveToNextState() {
 	switch (effectState) {
 		case 0:
 			showPikachuBack();
+			Instruction.bind(true, 'tap_to_advance'); 
 			break;
 		case 1:
 			showPikachuFront();
+			Instruction.bind(true, 'flip_camera');
+			break;
+		case 2:
+			Instruction.bind(true, 'find_face');
 			break;
 		default:
 			break;
@@ -81,13 +86,11 @@ export function moveToNextState() {
 function showPikachuBack() {
 	Scene.root.findFirst('planeTracker').then(show);
 	Scene.root.findFirst('pikachu').then(parachute);
-	Instruction.bind(true, 'tap_to_advance'); 
 }
 
 function showPikachuFront() {
 	Scene.root.findFirst('planeTracker').then(hide);
 	Scene.root.findFirst('sittingPikachu').then(show);
-	Instruction.bind(true, 'flip_camera');
 }
 
 function hide(object) {
