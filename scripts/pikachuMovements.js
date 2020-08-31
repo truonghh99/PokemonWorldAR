@@ -20,10 +20,17 @@ export const TOP_PARACHUTE_Y = 1.4;
 export const BOTTOM_PARACHUTE_Y = 0.4;
 
 TouchGestures.onTap().subscribe(moveToNextState);
-TouchGestures.onPan().subscribe(retrackPlane);
+TouchGestures.onPan().subscribe(reset);
 Scene.root.findFirst('sittingPikachu').then(hide);
 Scene.root.findFirst('planeTracker').then(hide);
 Instruction.bind(true, 'tap_to_start'); 
+
+export function reset() {
+	Scene.root.findFirst('sittingPikachu').then(hide);
+	Scene.root.findFirst('planeTracker').then(hide);
+	Instruction.bind(true, 'tap_to_start');
+	effectState = 0;
+}
 
 export function moveVertically(object, begin, end) {
 	var baseDriverParameters = {
