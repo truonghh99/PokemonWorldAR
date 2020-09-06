@@ -38,28 +38,7 @@ export function playSound() {
 
 export function playPokemonSounds() {
   switch (action) {
-    case 0:
-      Audio.getAudioPlaybackController("bulbasaur").then(
-        (playbackController) => {
-          // Play  the playback controller
-          playbackController.setPlaying(true);
-          playbackController.reset();
-        }
-      );
-
-      break;
-
     case 1:
-      Audio.getAudioPlaybackController("squirtle").then(
-        (playbackController) => {
-          // Play  the playback controller
-          playbackController.setPlaying(true);
-          playbackController.reset();
-        }
-      );
-
-      break;
-    case 2:
       Audio.getAudioPlaybackController("charmander").then(
         (playbackController) => {
           // Play  the playback controller
@@ -68,8 +47,33 @@ export function playPokemonSounds() {
         }
       );
       break;
+    case 2:
+      Audio.getAudioPlaybackController("eevee").then(
+        (playbackController) => {
+          // Play  the playback controller
+          playbackController.setPlaying(true);
+          playbackController.reset();
+        }
+      );
+      break;
     case 3:
-      Audio.getAudioPlaybackController("eevee").then((playbackController) => {
+      Audio.getAudioPlaybackController("pikachu1").then((playbackController) => {
+        // Play  the playback controller
+        playbackController.setPlaying(true);
+        playbackController.reset();
+      });
+      break;
+    case 4:
+      Audio.getAudioPlaybackController("squirtle").then(
+        (playbackController) => {
+          // Play  the playback controller
+          playbackController.setPlaying(true);
+          playbackController.reset();
+        }
+      );
+      break;
+    case 5:
+      Audio.getAudioPlaybackController("bulbasaur").then((playbackController) => {
         // Play  the playback controller
         playbackController.setPlaying(true);
         playbackController.reset();
