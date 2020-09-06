@@ -11,6 +11,7 @@ const Instruction = require('Instruction');
 const CameraInfo = require('CameraInfo');
 
 export var effectState = 0;
+export var camera = "BACK";
 
 export const FAR_LEFT_X = -0.5;
 export const FAR_RIGHT_X = 0.5; 
@@ -24,6 +25,13 @@ TouchGestures.onPan().subscribe(reset);
 Scene.root.findFirst('sittingPikachu').then(hide);
 Scene.root.findFirst('planeTracker').then(hide);
 Instruction.bind(true, 'tap_to_start'); 
+
+CameraInfo.captureDevicePosition.monitor().subscribe(function (e) {
+   camera = e.newValue;
+   if (effectState === 2 && camera == "BACK") {
+   		moveToNextState();
+   }
+});
 
 export function reset() {
 	Scene.root.findFirst('sittingPikachu').then(hide);
