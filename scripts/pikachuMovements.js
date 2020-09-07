@@ -15,15 +15,14 @@ export var camera = "BACK";
 
 export const FAR_LEFT_X = -0.5;
 export const FAR_RIGHT_X = 0.5; 
-export const TOP_Y = 1;
+export const TOP_Y = 0.5;
 export const BOTTOM_Y = 0;
-export const TOP_PARACHUTE_Y = 1.4;
+export const TOP_PARACHUTE_Y = 0.9;
 export const BOTTOM_PARACHUTE_Y = 0.4;
 
 TouchGestures.onTap().subscribe(moveToNextState);
-TouchGestures.onPan().subscribe(reset);
+TouchGestures.onPan().subscribe(retrackPlane);
 Scene.root.findFirst('sittingPikachu').then(hide);
-Scene.root.findFirst('planeTracker').then(hide);
 Instruction.bind(true, 'tap_to_start'); 
 
 CameraInfo.captureDevicePosition.monitor().subscribe(function (e) {
@@ -42,7 +41,7 @@ export function reset() {
 
 export function moveVertically(object, begin, end) {
 	var baseDriverParameters = {
-	  durationMilliseconds: 1500,
+	  durationMilliseconds: 1000,
 	  loopCount: 1,
 	  mirror: true
 	};
@@ -99,7 +98,6 @@ export function moveToNextState() {
 }
 
 function showPikachuBack() {
-	Scene.root.findFirst('planeTracker').then(show);
 	Scene.root.findFirst('pikachu').then(parachute);
 }
 

@@ -58,7 +58,7 @@ export function playPokemonSounds() {
       break;
     case 3:
       Audio.getAudioPlaybackController("pikachu1").then((playbackController) => {
-        // Play  the playback controller
+        // Play the playback controller
         playbackController.setPlaying(true);
         playbackController.reset();
       });
