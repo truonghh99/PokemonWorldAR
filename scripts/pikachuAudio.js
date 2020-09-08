@@ -57,7 +57,7 @@ export function playPokemonSounds() {
       );
       break;
     case 3:
-      Audio.getAudioPlaybackController("pikachu1").then((playbackController) => {
+      Audio.getAudioPlaybackController("pikachu").then((playbackController) => {
         // Play the playback controller
         playbackController.setPlaying(true);
         playbackController.reset();
@@ -84,39 +84,13 @@ export function playPokemonSounds() {
 
 export function playPikachuSounds() {
   let reaction = getRandomIntInclusive(0, 2);
-
-  switch (reaction) {
-    case 0:
-      Audio.getAudioPlaybackController("pikachu1").then(
-        (playbackController) => {
-          // Play  the playback controller
-          playbackController.setPlaying(true);
-          playbackController.reset();
-        }
-      );
-
-      break;
-
-    case 1:
-      Audio.getAudioPlaybackController("pikachu2").then(
-        (playbackController) => {
-          // Play  the playback controller
-          playbackController.setPlaying(true);
-          playbackController.reset();
-        }
-      );
-
-      break;
-    case 2:
-      Audio.getAudioPlaybackController("pikachu3").then(
-        (playbackController) => {
-          // Play  the playback controller
-          playbackController.setPlaying(true);
-          playbackController.reset();
-        }
-      );
-      break;
-  }
+  Audio.getAudioPlaybackController("pikachu").then(
+    (playbackController) => {
+      // Play  the playback controller
+      playbackController.setPlaying(true);
+      playbackController.reset();
+    }
+  );
 }
 
 function getRandomIntInclusive(min, max) {
